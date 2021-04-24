@@ -1,0 +1,116 @@
+
+{% extends "layout.html" %}
+{% block style %}
+
+<style>
+  .my-custom-scrollbar {
+    position: relative;
+    height: 400px;
+    overflow: auto;
+  }
+  .table-wrapper-scroll-y {
+    display: block;
+  }
+  /* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  /* box-shadow: inset 0 0 5px grey;  */
+  box-shadow: inset 10px #32325D; 
+  border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background:#32325D;
+  /* background:#F6F9FC; */
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  /* background: #32325D; */
+  /* background: #F6F9FC;  */
+  background: #F2F3F9; 
+}
+</style>
+
+{% endblock %}
+{% block body %}
+<div class="header bg-primary pb-6">
+  <div class="container-fluid">
+    <div class="header-body">
+      <div class="row align-items-center py-4">
+        <div class="col-lg-6 col-7">
+          <h6 class="h2 text-white d-inline-block mb-0">Media Center</h6>
+        </div>
+        
+      </div>
+      <!-- Card stats -->
+    
+    </div>
+  </div>
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--6">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header border-0">
+          <div class="row align-items-center">
+            <div class="col">
+              <h3 class="mb-0"><i class="ni ni-tv-2"></i> Multi Media Center</h3>
+            
+            </div>
+
+          </div>
+        </div>
+        
+        <div class="card-body">
+
+          <div class="row">
+            <div class="col-5">
+              <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/Uf47Tj71uWw" allowfullscreen></iframe>
+              </div>              
+            </div>
+            <div class="col-2"></div>
+            <div class="col-5">
+              <div class="embed-responsive embed-responsive-16by9">
+                <iframe width="100%"  scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/943429495&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/c-w-williams-687894928" title="C.W Williams" target="_blank" style="color: #cccccc; text-decoration: none;">C.W Williams</a> · <a href="https://soundcloud.com/c-w-williams-687894928/a-guide-to-manage-your-newly-diagnosed-type-2-diabetes" title="A Guide To Manage Your Newly-Diagnosed Type 2 Diabetes" target="_blank" style="color: #cccccc; text-decoration: none;">A Guide To Manage Your Newly-Diagnosed Type 2 Diabetes</a></div>
+
+              </div>
+            </div>
+
+          </div>
+
+          <div class="row">
+            <div class="col-5">
+              <div class="embed-responsive embed-responsive-16by9">
+                <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1024905655&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/c-w-williams-687894928" title="C.W Williams" target="_blank" style="color: #cccccc; text-decoration: none;">C.W Williams</a> · <a href="https://soundcloud.com/c-w-williams-687894928/substance-use-disorder-what-are-the-early-signs-and-symptoms" title="Substance Use Disorder What Are the Early Signs and Symptoms" target="_blank" style="color: #cccccc; text-decoration: none;">Substance Use Disorder What Are the Early Signs and Symptoms</a></div>
+              </div>              
+            </div>
+            <div class="col-2"></div>
+            <div class="col-5">
+              <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/da1vvigy5tQ" allowfullscreen></iframe>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+</div>
+{% endblock %}

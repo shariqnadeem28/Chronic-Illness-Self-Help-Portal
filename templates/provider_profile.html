@@ -1,0 +1,189 @@
+
+{% extends "layout.html" %}
+{% block body %}
+    <div class="header pb-6 d-flex align-items-center" style="min-height: 350px;">
+      <!-- Mask -->
+      <span class="mask bg-gradient-default opacity-8"></span>
+      <!-- Header container -->
+      <div class="container-fluid d-flex align-items-center">
+        <div class="row">
+          <div class="col-lg-7 col-md-10">
+            <h1 class="display-2 text-white"> 
+              {% if current_user.is_authenticated %}
+                        Hello {{ current_user.first_name}} !
+              {% endif %}
+            </h1>
+            <p class="text-white mt-0 mb-5">This is your profile page. Please Fill the fields below so that you can provide a better counseling in future.</p>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Page content -->
+    <div class="container-fluid mt--6">
+      <div class="row">
+        <div class="col-xl-4 order-xl-2">
+          <div class="card card-profile">
+            <img src="{{ url_for('static', filename='img/theme/img-1-1000x600.jpg') }}" alt="Image placeholder" class="card-img-top">
+            <div class="row justify-content-center">
+              <div class="col-lg-3 order-lg-2">
+                <div class="card-profile-image">
+                  <a href="#">
+                    <img src="{{ url_for('static', filename='img/theme/dr.png') }}" class="rounded-circle">
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-body pt-0 mt-6">
+              <div class="text-center">
+                <h5 class="h3">
+                {{current_user.first_name + current_user.last_name}}
+                </h5>
+                
+                <div class="h5 mt-4">
+                  <i class="ni business_briefcase-24 mr-2"></i>Account Type - {{current_user.account_type}}
+                </div>
+               </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-8 order-xl-1">
+          <div class="card">
+            <div class="card-header">
+              <div class="row align-items-center">
+                <div class="col-8">
+                  <h3 class="mb-0">Your Profile </h3>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <form action="/profile" method="POST">
+                <h6 class="heading-small text-muted mb-4">User information</h6>
+                <div class="pl-lg-4">
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-username">Name</label>
+                        <input type="text" id="input-username" class="form-control" value="{{current_user.first_name}} {{current_user.last_name}}" disabled>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-email">Email address</label>
+                        <input type="email" id="input-email" class="form-control" value="{{current_user.email}}" disabled>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-first-name">First name</label>
+                        <input type="text" id="input-first-name" class="form-control" value="{{current_user.first_name }}" disabled>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-last-name">Last name</label>
+                        <input type="text" id="input-last-name" class="form-control" placeholder="Last name" value="{{current_user.last_name}}" disabled>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <hr class="my-4" />
+                <!-- Patient Information -->
+                
+                <h6 class="heading-small text-muted mb-4">Provider information</h6>
+                <input type="hidden" name="user_info_id" value="{{current_user.id}}">
+                <div class="pl-lg-4">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label class="form-control-label" for="serving_as">Serving As</label>
+                        <select id="serving_as" class="form-control" name="serving_as">
+                            <option>Trainer</option>
+                            <option>Dietician</option>
+                            <option>Outreach Worker</option>
+                            <option>Psychiatrist </option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <input type="submit" class="btn btn-primary" value="ADD Details">
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Footer -->
+      <footer class="footer pt-0">
+        <div class="row align-items-center justify-content-lg-between">
+          <div class="col-lg-6">
+            <div class="copyright text-center  text-lg-left  text-muted">
+              &copy; 2020 
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+
+
+  {% endblock %}
+  {% block script %}
+  <!-- JQUERY -->
+  <script>
+(function($){
+
+$(document).ready(function(){
+
+  $(".cif").css("display", "none");
+  $(".diabetes").css("display", "none");
+  $(".dementia").css("display", "none");
+  $(".cancer").css("display", "none");
+
+
+$("#chronic_illness_name").change(function () {
+  var str = "";
+  $("#chronic_illness_name option:selected").each(function () {
+  
+    str += $(this).text() + "";
+  
+  });
+  if (str === 'Diabetes') {
+
+
+    $("#chronic-illness-category").val("cif");
+    $(".diabetes").css("display", "block");
+    $(".dementia").css("display", "none");
+    $(".cancer").css("display", "none");
+    
+  }
+  else if(str === 'Dementia'){
+  
+    $("#chronic-illness-category").val("cif");
+    $(".diabetes").css("display", "none");
+    $(".dementia").css("display", "block");
+    $(".cancer").css("display", "none");
+  
+  }
+  else if(str === 'Cancer'){
+ 
+    $("#chronic-illness-category").val("cif");
+    $(".diabetes").css("display", "none");
+    $(".dementia").css("display", "none");
+    $(".cancer").css("display", "block");
+ 
+ }
+  else{
+  // Do Nothing
+}
+});
+
+});
+})(jQuery)
+</script>    
+  {% endblock %}

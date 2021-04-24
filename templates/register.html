@@ -1,0 +1,148 @@
+
+{% extends "login_register_forget_layout.html" %}
+{% block body %}
+<!-- Header -->
+<div class="header bg-gradient-primary py-5 py-lg-5 pt-lg-5">
+  <div class="container">
+    <div class="header-body text-center mb-7">
+      <div class="row justify-content-center">
+        <div class="col-xl-5 col-lg-6 col-md-8 px-5">
+          {% with messages = get_flashed_messages() %}  
+          {% if messages %}  
+            {% for message in messages %}  
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                  <span class="alert-icon"><i class="ni ni-fat-remove"></i></span>
+                  <span class="alert-text">{{ message }}</span>
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>  
+            {% endfor %}  
+          {% endif %}  
+        {% endwith %}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="separator separator-bottom separator-skew zindex-100">
+    <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
+    </svg>
+  </div>
+</div>
+<!-- Page content -->
+<div class="container mt--6 pb-5">
+  <!-- Table -->
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8">
+      <div class="card bg-secondary border-0">
+       
+        <div class="card-body px-lg-5 py-lg-5">
+          <!-- <div class="text-center text-muted mb-4">
+            <small>Or sign up with credentials</small>
+          </div> -->
+          <img class="d-block mx-auto" src="{{ url_for('static', filename='/img/brand/new-logo.png') }}">
+          <h1 class="justify-content-center text-blue">Sign Up!</h1>
+          <form role="form" method="POST" action="/signup">
+            <div class="form-group">
+              <div class="input-group input-group-merge input-group-alternative mb-3">
+                <div class="input-group-prepend">
+                  <!-- <span class="input-group-text"><i class="ni ni-hat-3"></i></span> -->
+                  <span class="input-group-text"><i class="ni ni-circle-08"></i></span>
+                </div>
+                <input class="form-control" placeholder="First Name" type="text" name="first_name" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-group input-group-merge input-group-alternative mb-3">
+                <div class="input-group-prepend">
+                  <!-- <span class="input-group-text"><i class="ni ni-hat-3"></i></span> -->
+                  <span class="input-group-text"><i class="ni ni-circle-08"></i></span>
+                </div>
+                <input class="form-control" placeholder="Last Name" type="text" name="last_name" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-group input-group-merge input-group-alternative mb-3">
+                <div class="input-group-prepend">
+                  <!-- <span class="input-group-text"><i class="ni ni-hat-3"></i></span> -->
+                  <span class="input-group-text"><i class="ni ni-single-02"></i></span>
+                </div>
+                  <select class="form-control" name="gender" required>
+                    <option value="">Select Gender</option>
+                    <option>Male</option>
+                    <option>Female</option>
+                  </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-group input-group-merge input-group-alternative mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                </div>
+                <input class="form-control" placeholder="Email" type="email" name="email" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-group input-group-merge input-group-alternative">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                </div>
+                <input class="form-control" placeholder="Password" type="password" id="password" name="password" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-group input-group-merge input-group-alternative">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="ni ni-key-25"></i></span>
+                </div>
+                <input class="form-control" placeholder="Confirm Password" id="confirm-password" type="password" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-group input-group-merge input-group-alternative mb-3">
+                <div class="input-group-prepend">
+
+                  <span class="input-group-text"><i class="ni ni-bulb-61"></i></span>
+                </div>
+                  <select class="form-control" name="account_type" required>
+                    <option value="">Select Account Type</option>
+                    <option>Patient</option>
+                    <option>Provider</option>
+                  </select>
+              </div>
+            </div>
+            <input type="hidden" name="account_info" value="0">
+            <div class="text-center">
+              <button type="submit" id="btn-submit" class="btn btn-primary mt-4">Create account</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-6" >
+          <a href="/login" class="text-light"><small>Already Have Account?</small></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block script %}
+
+<script>
+  $(function () {
+    $("#btn-submit").click(function () {
+			var password = $("#password").val();
+			var confirmPassword = $("#confirm-password").val();
+    
+			if (password != confirmPassword) {
+				alert("Passwords do not match.");
+				return false;
+			}
+			return true;
+		});
+	});
+</script>
+
+{% endblock %}

@@ -1,0 +1,86 @@
+
+
+{% extends "login_register_forget_layout.html" %}
+{% block body %}
+<!-- Header -->
+<div class="header bg-gradient-primary py-6 py-lg-6 pt-lg-6">
+
+  
+   
+  <div class="container">
+    <div class="header-body text-center mb-4">
+      <div class="row justify-content-center">
+        <div class="col-xl-5 col-lg-6 col-md-8 px-5">
+
+          {% with messages = get_flashed_messages() %}  
+          {% if messages %}  
+            {% for message in messages %}  
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                  <span class="alert-icon"><i class="ni ni-fat-remove"></i></span>
+                  <span class="alert-text">{{ message }}</span>
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>  
+            {% endfor %}  
+          {% endif %}  
+        {% endwith %}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="separator separator-bottom separator-skew zindex-100">
+    <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
+    </svg>
+  </div>
+</div>
+<!-- Page content -->
+<div class="container mt--6 pb-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-5 col-md-7">
+      <div class="card bg-secondary border-0 mb-0">
+        <div class="card-body px-lg-5 py-lg-5">
+          <img class="d-block mx-auto" src="{{ url_for('static', filename='/img/brand/new-logo.png') }}">
+          <h1 class="justify-content-center text-blue">Welcome!</h1>
+          <form role="form" method="POST" action="/login">
+            <div class="form-group mb-3">
+              <div class="input-group input-group-merge input-group-alternative">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                </div>
+                <input class="form-control" placeholder="Email" type="email" name="email" autofocus>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-group input-group-merge input-group-alternative">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                </div>
+                <input class="form-control" placeholder="Password" type="password" name="password">
+              </div>
+            </div>
+            <div class="custom-control custom-control-alternative custom-checkbox">
+              <input class="custom-control-input" id=" customCheckLogin" type="checkbox">
+              <label class="custom-control-label" for=" customCheckLogin">
+                <span class="text-muted">Remember me</span>
+              </label>
+            </div>
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary my-4">Sign in</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-6">
+          <a href="/forget-password" class="text-light"><small>Forgot password?</small></a>
+        </div>
+        <div class="col-6 text-right">
+          <a href="/signup" class="text-light"><small>Create new account</small></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

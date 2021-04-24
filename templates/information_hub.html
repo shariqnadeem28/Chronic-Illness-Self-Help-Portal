@@ -1,0 +1,142 @@
+
+{% extends "layout.html" %}
+{% block style %}
+
+<style>
+  .my-custom-scrollbar {
+    position: relative;
+    height: 400px;
+    overflow: auto;
+  }
+  .table-wrapper-scroll-y {
+    display: block;
+  }
+  /* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  /* box-shadow: inset 0 0 5px grey;  */
+  box-shadow: inset 10px #32325D; 
+  border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background:#32325D;
+  /* background:#F6F9FC; */
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  /* background: #32325D; */
+  /* background: #F6F9FC;  */
+  background: #F2F3F9; 
+}
+</style>
+
+{% endblock %}
+{% block body %}
+<div class="header bg-primary pb-6">
+  <div class="container-fluid">
+    <div class="header-body">
+      <div class="row align-items-center py-4">
+        <div class="col-lg-6 col-7">
+          <h6 class="h2 text-white d-inline-block mb-0"><i class="ni ni-notification-70 text-yellow"></i> Info</h6>
+        </div>
+      </div>
+      <!-- Card stats -->
+    
+    </div>
+  </div>
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--6">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header border-0">
+          <div class="row align-items-center">
+            <div class="col">
+              <h3 class="mb-0"> Information Hub</h3>
+              
+            </div>
+
+          </div>
+        </div>
+        <div class="card-body p-4 border border-right-0 border-left-0 border-bottom-0">  
+          {% if current_user.patient.chronic_illness_name == "Diabetes" %}
+          <p class="display-5">Need more information about the diabetes disease? Start here</p>
+          <div class="row">
+            
+          <footer class="blockquote-footer col-3">
+            <cite>
+              <a href="https://beyondtype1.org/finding-a-diabetes-mental-health-provider/"> American Diabetes Association </a> 
+            </cite>
+          </footer> 
+          <footer class="blockquote-footer col-3">
+            <cite>
+              <a href="https://www.cdc.gov/diabetes/basics/diabetes.html"> Center for Disease Control & Prevention </a> 
+            </cite>
+          </footer>
+          <footer class="blockquote-footer col-3">
+            <cite>
+              <a href="https://www.google.com/search?q=diabetes+information&rlz=1C1SQJL_enUS836US836&sxsrf=ALeKk03PbftIghtfSk80rqVqvQvYoIKbdg:1618685459160&source=lnms&tbm=nws&sa=X&ved=2ahUKEwia7K6e-YXwAhW5KVkFHaUGAeAQ_AUoAXoECAEQAw&biw=1504&bih=892"> See Google Latest News </a> 
+            </cite>
+          </footer>
+          {% elif current_user.patient.chronic_illness_name == "Dementia" %}
+          <p class="display-5">Need more information about the dementia disease? Start here</p>
+          <div class="row">
+            
+          <footer class="blockquote-footer col-3">
+            <cite>
+              <a href="https://beyondtype1.org/finding-a-diabetes-mental-health-provider/"> American dementia Association </a> 
+            </cite>
+          </footer> 
+          <footer class="blockquote-footer col-3">
+            <cite>
+              <a href="https://www.cdc.gov/diabetes/basics/diabetes.html"> Center for Disease Control & Prevention </a> 
+            </cite>
+          </footer>
+          <footer class="blockquote-footer col-3">
+            <cite>
+              <a href="https://www.google.com/search?q=Dementia+information&sxsrf=ALeKk00CHBjZJpGYND7hMEdW9DBhDkNL2Q:1619126651466&source=lnms&tbm=nws&sa=X&ved=2ahUKEwjBp6Dn5JLwAhWKecAKHZ0KAZYQ_AUoAnoECAEQBA&biw=1536&bih=722"> See Google Latest News </a> 
+            </cite>
+          </footer>
+          {% elif current_user.patient.chronic_illness_name == "Cancer" %}
+          <p class="display-5">Need more information about the cancer disease? Start here</p>
+          <div class="row">
+            
+          <footer class="blockquote-footer col-3">
+            <cite>
+              <a href="https://beyondtype1.org/finding-a-diabetes-mental-health-provider/"> American Cancer Association </a> 
+            </cite>
+          </footer> 
+          <footer class="blockquote-footer col-3">
+            <cite>
+              <a href="https://www.cdc.gov/diabetes/basics/diabetes.html"> Center for Disease Control & Prevention </a> 
+            </cite>
+          </footer>
+          <footer class="blockquote-footer col-3">
+            <cite>
+              <a href="https://www.google.com/search?q=cancer+information&source=lmns&tbm=nws&bih=722&biw=1536&hl=en&sa=X&ved=2ahUKEwiTvrHc5JLwAhV_gc4BHZ-hCIEQ_AUoAXoECAEQAQ"> See Google Latest News </a> > 
+            </cite>
+          </footer>
+          {% else %}
+          <!-- do nothing -->
+          {% endif %} 
+          </div>
+          
+          
+          
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock %}

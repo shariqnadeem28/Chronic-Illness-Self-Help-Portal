@@ -1,0 +1,13 @@
+Changes/customizations in html template:
+
+CSS stylesheet
+- In layout.html file I have modified the CSS for Scrollable table (table has height of 400px), the purpose of this is to make the table scrollable instesad of scrolling the entire page.
+- Other styling done is to change the scrollbar appearance.
+
+JQuery:
+- In Profile.html it is used for chronic Illness Category selelction. If we select 'Diabeties' then it will show the categories of diabeties, dimentia it will show the dimentia catgory and similarly for cancer.
+- dashboard.html is simply used for data loading in model section, it takes data from read more anchor by pointing it in data-target-notes-text.
+- virtual_appointment.html follows the same covention along with the addition of a function through which when the user clicks on add appointment and it displays the booking form using $(".appointment-booking-form").css("display", "block"); by default it was $(".appointment-booking-form").css("display", "none");
+- register.html use btn-submit on click for confirm password verification
+- provider_dashboard.html contains a jquery function for readmore which acually sends the data to model.
+- provider_notes.html has jquery which also sends data in to model for editing purposes. 

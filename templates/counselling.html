@@ -1,0 +1,126 @@
+
+{% extends "layout.html" %}
+{% block style %}
+
+<style>
+  .my-custom-scrollbar {
+    position: relative;
+    height: 400px;
+    overflow: auto;
+  }
+  .table-wrapper-scroll-y {
+    display: block;
+  }
+  /* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  /* box-shadow: inset 0 0 5px grey;  */
+  box-shadow: inset 10px #32325D; 
+  border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background:#32325D;
+  /* background:#F6F9FC; */
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  /* background: #32325D; */
+  /* background: #F6F9FC;  */
+  background: #F2F3F9; 
+}
+</style>
+
+{% endblock %}
+{% block body %}
+<div class="header bg-primary pb-6">
+  <div class="container-fluid">
+    <div class="header-body">
+      <div class="row align-items-center py-4">
+        <div class="col-lg-6 col-7">
+          <h6 class="h2 text-white d-inline-block mb-0">Counselling</h6>
+        </div>
+      </div>
+      <!-- Card stats -->
+    
+    </div>
+  </div>
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--6">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header border-0">
+          <div class="row align-items-center">
+            <div class="col">
+              <h3 class="mb-0"><i class="ni ni-favourite-28 text-pink"></i> {{ current_user.patient.chronic_illness_name }} <small>{{ current_user.patient.chronic_illness_category }}</small></h3>
+              
+            </div>
+
+          </div>
+        </div>
+        <div class="card-body p-4 border border-right-0 border-left-0 border-bottom-0">  
+        
+        {% if current_user.patient.chronic_illness_name == "Diabetes" %}
+        <p>
+          For some people, the stress of living with diabetes can contribute to both changes in mood and concerns about potential complications. The physical effects of diabetes may also lead to nervousness, anxiety, and confusion.
+          Sometimes, friends and family may struggle to understand these mood swings, but learning about how diabetes can affect mood and providing support can help promote a stronger, healthier relationship. <br>
+          Having diabetes can also lead to a mental health condition that doctors call diabetes distress. This condition shares some elements of depression, anxiety, and stress.
+          While symptoms may not be severe enough for a doctor to diagnose diabetes distress as a mental illness, the symptoms can affect a person’s quality of life.  
+        </p>
+        <p class="lead">
+          If you feel you or someone you know may be affected by the above, maybe its time to get professional help to counter these issues, and improve the way of living life with diabetes.
+        </p>
+        <footer class="blockquote-footer float-right">
+         <cite>
+           <a href="https://beyondtype1.org/finding-a-diabetes-mental-health-provider/">Click me!</a> to get started
+         </cite>
+        </footer> 
+        {% elif current_user.patient.chronic_illness_name == "Dementia" %}
+        <p>
+          For some people, the stress of living with dementia can contribute to both changes in mood and concerns about potential complications. The physical effects of dementia may also lead to nervousness, anxiety, and confusion.
+          Sometimes, friends and family may struggle to understand these mood swings, but learning about how dementia can affect mood and providing support can help promote a stronger, healthier relationship. <br>
+          Having dementia can also lead to a mental health condition that doctors call dementia distress. This condition shares some elements of depression, anxiety, and stress.
+          While symptoms may not be severe enough for a doctor to diagnose dementia distress as a mental illness, the symptoms can affect a person’s quality of life. 
+        </p>
+        <p class="lead">
+          If you feel you or someone you know may be affected by the above, maybe its time to get professional help to counter these issues, and improve the way of living life with dementia.
+        </p>
+        <footer class="blockquote-footer float-right">
+         <cite>
+           <a href="https://beyondtype1.org/finding-a-diabetes-mental-health-provider/">Click me!</a> to get started
+         </cite>
+        </footer>
+        {% elif current_user.patient.chronic_illness_name == "Cancer" %}
+        <p>
+          For some people, the stress of living with cancer can contribute to both changes in mood and concerns about potential complications. The physical effects of cancer may also lead to nervousness, anxiety, and confusion.
+          Sometimes, friends and family may struggle to understand these mood swings, but learning about how cancer can affect mood and providing support can help promote a stronger, healthier relationship. <br>
+          Having cancer can also lead to a mental health condition that doctors call cancer distress. This condition shares some elements of depression, anxiety, and stress.
+          While symptoms may not be severe enough for a doctor to diagnose cancer distress as a mental illness, the symptoms can affect a person’s quality of life. 
+        </p>
+        <p class="lead">
+          If you feel you or someone you know may be affected by the above, maybe its time to get professional help to counter these issues, and improve the way of living life with cancer.
+        </p>
+        <footer class="blockquote-footer float-right">
+         <cite>
+           <a href="https://beyondtype1.org/finding-a-diabetes-mental-health-provider/">Click me!</a> to get started
+         </cite>
+        </footer>
+        {% else %}
+         <!-- do nothing -->
+        {% endif %} 
+      </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock %}

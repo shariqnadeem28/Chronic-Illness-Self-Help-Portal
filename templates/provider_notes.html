@@ -1,0 +1,284 @@
+
+{% extends "layout.html" %}
+
+{% block style %}
+
+
+{% endblock %}
+{% block body %}
+
+<div class="header bg-primary pb-6">
+<div class="row">
+  <div class="col-2"></div>
+  <div class="col-8">
+    {% with messages = get_flashed_messages(with_categories=true) %}  
+      {% if messages %}  
+        {% for category, message in messages %}  
+          <div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+            <span class="alert-icon"><i class="ni ni-check-bold"></i></span>
+            <span class="alert-text">{{ message }}</span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+          </div>  
+        {% endfor %}  
+      {% endif %}  
+    {% endwith %}  
+  </div>
+  <div class="col-2"></div>
+</div>  
+
+  <div class="container-fluid">
+    <div class="header-body">
+      <div class="row align-items-center py-4">
+        <div class="col-lg-6 col-7">
+          <h6 class="h2 text-white d-inline-block mb-0">Notes</h6>
+        </div>
+        <div class="col-lg-6 col-5 text-right">
+
+        </div>
+      </div>
+      <!-- Card stats -->
+
+    </div>
+  </div>
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+  <div class="row mb-2">
+    <div class="col-md-10"></div>
+    <div class="col-md-2">
+      <button type="button" class="btn btn-block btn-success" data-toggle="modal" data-target="#modal-form"><i class="ni ni-fat-add"></i> New Notes</button>
+      
+      <div class="modal fade" id="modal-form" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
+
+        <div class="modal-dialog modal- modal-dialog-centered" role="document">
+          
+          <div class="modal-content">
+
+            <div class="modal-body p-0">
+
+              <div class="card bg-secondary border-0 mb-0">
+                <div class="card-header bg-transparent pb-2">
+                  <div class="text-center mt-2"><p>Add New Notes</p></div>
+                </div>
+                <div class="card-body px-lg-5 py-lg-5">
+
+                  <form role="form" method="POST" action="{{url_for('add_notes') }}">
+                    <div class="form-group mb-3">
+                      <div class="input-group input-group-merge input-group-alternative">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="ni ni-ambulance"></i></span>
+                        </div>
+                        <select class="form-control" name="illness">
+                          <option disabled selected>Select Illness Type</option>
+                          <option>Diabetes</option>
+                          <option>Dementia</option>
+                          <option>Cancer</option>
+                        </select>
+                        
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="input-group input-group-merge input-group-alternative">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="ni ni-book-bookmark"></i></span>
+                        </div>
+                        <textarea rows="4" class="form-control" id="notes_text" placeholder="Add notes here..." name="notes_text"></textarea>
+                      </div>
+                    </div>
+                    
+                    
+                    <div class="alert alert-default alert-dismissible fade show" id="warning-message" role="alert">
+                      
+                      <span class="alert-text"><strong>Notes</strong> Should be related to your category!</span>
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    
+                    <div class="text-center">
+                      <button type="submit" class="btn btn-primary my-4">Add Note</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="card">
+        <div class="card-header border-0">
+          <div class="row align-items-center">
+            <div class="col">
+              <h3 class="mb-0"><i class="ni ni-book-bookmark"></i>Your Notes</h3>
+            </div>
+
+          </div>
+        </div>
+        <div class="table-responsive text-nowrap table-wrapper-scroll-y my-custom-scrollbar">
+          <!-- Projects table -->
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Notes</th>
+                <th scope="col">Illness</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for note in notes %}
+               <tr>
+                  <th>{{ note.date }}</th>
+                  <td>{{ note.notes_text[:80] }}......... <a href="" data-toggle="modal" data-target="#modal-readmore"  data-target-notes-text="{{note.notes_text}}">read more</a></td>
+                  <td>{{ note.illness }}</td>
+                  <td>
+                    <!-- <a href="/show-edit-notes/{{note.id}}" class="btn btn-outline-warning" data-toggle="modal" data-target="#modal-edit" data-target-id="{{note.id}}" data-target-notes-text="{{note.notes_text}}" data-target-illness="{{note.illness}}" data-target-date="{{note.date}}" >Edit</a> -->
+                    <a href="#" class="btn btn-outline-warning" data-toggle="modal" data-target="#modal-edit" data-target-id="{{note.id}}" data-target-notes-text="{{note.notes_text}}" data-target-illness="{{note.illness}}" data-target-date="{{note.date}}" >Edit</a>
+
+                  </td>
+                  <td>
+                    <a href="/delete-notes/{{note.id}}" class="btn btn-outline-danger" >Delete</a>
+                  </td>
+               </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+</div>
+
+<!-- Read More Modal -->
+
+<div class="modal fade" id="modal-readmore" tabindex="-1" role="dialog" aria-labelledby="modal-readmore"
+  aria-hidden="true">
+  <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h6 class="modal-title" id="modal-title-default">Detail View</h6>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <p id="data_notes_text_read_more"></p>
+      </div>
+
+      <div class="modal-footer">
+
+        <button type="button" class="btn btn-link  ml-auto" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Modal Notification -->
+<div class="modal fade" id="modal-edit" tabindex="-1" role="dialog" aria-labelledby="modal-edit" aria-hidden="true">
+    
+<div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
+  <div class="modal-content">
+    
+      <div class="modal-header">
+          <h6 class="modal-title" id="modal-title-notification">Should be related to Your Category</h6>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+          </button>
+      </div>
+      <form role="form" method="POST" action="{{url_for('update_notes') }}">
+      <div class="modal-body">
+        
+          <div class="py-3 text-center">
+
+                <input type="hidden" name="data_id" id="data_id">
+                <input type="hidden" name="" id="">
+                <input type="hidden" name="data_date" id="data_date">
+                <div class="form-group mb-3">
+                  <div class="input-group input-group-merge input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-ambulance"></i></span>
+                    </div>
+                    <select class="form-control" name="data_illness" id="data_illness">
+                      <option id="data_illness"></option>
+                      <option>Diabetes</option>
+                      <option>Dementia</option>
+                      <option>Cancer</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group input-group-merge input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-book-bookmark"></i></span>
+                    </div>
+                    <textarea rows="4" class="form-control" id="data_notes_text" name="data_notes_text"></textarea>
+                  </div>
+                </div>
+                
+          </div>
+          
+      </div>
+      
+      <div class="modal-footer">
+          <button type="submit" class="btn btn-white">Update</button>
+          <button type="button" class="btn btn-link text-white ml-auto" data-dismiss="modal">Close</button>
+      </div>
+</form>
+  </div>
+</div>
+</div>
+{% endblock %}
+
+{% block script %}
+
+<script>
+
+  $(document).ready(function () {
+    
+    $("#warning-message").css("display", "none");
+   $("#notes_text").click(function (e) { 
+     e.preventDefault();
+     $("#warning-message").css("display", "block");
+   });
+  });
+
+</script>
+<script>
+  $(document).ready(function () {
+      $("#modal-edit").on("show.bs.modal", function (e) {
+          var id = $(e.relatedTarget).data('target-id');
+          var notes_text = $(e.relatedTarget).data('target-notes-text');
+          var illness = $(e.relatedTarget).data('target-illness');
+          var date = $(e.relatedTarget).data('target-date');
+          $('#data_id').val(id);
+          $('#data_notes_text').val(notes_text);
+          $('#data_illness').val(illness);
+          $('#data_date').val(date);
+      });
+      $("#modal-readmore").on("show.bs.modal", function (e) {
+          var notes_text = $(e.relatedTarget).data('target-notes-text');
+          $('#data_notes_text_read_more').text(notes_text);
+          
+      });
+  });
+</script>
+{% endblock %}

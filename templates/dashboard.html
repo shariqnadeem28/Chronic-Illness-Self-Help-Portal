@@ -1,0 +1,146 @@
+
+{% extends "layout.html" %}
+{% block style %}
+
+<style>
+  .my-custom-scrollbar {
+    position: relative;
+    height: 400px;
+    overflow: auto;
+  }
+  .table-wrapper-scroll-y {
+    display: block;
+  }
+  /* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  /* box-shadow: inset 0 0 5px grey;  */
+  box-shadow: inset 10px #32325D; 
+  border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background:#32325D;
+  /* background:#F6F9FC; */
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  /* background: #32325D; */
+  /* background: #F6F9FC;  */
+  background: #F2F3F9; 
+}
+</style>
+
+{% endblock %}
+{% block body %}
+<div class="header bg-primary pb-6">
+  <div class="container-fluid">
+    <div class="header-body">
+      <div class="row align-items-center py-4">
+        <div class="col-lg-6 col-7">
+          <h6 class="h2 text-white d-inline-block mb-0">Dashboard / Patient</h6>
+        </div>
+        <div class="col-lg-6 col-5 text-right">
+          
+        </div>
+      </div>
+      <!-- Card stats -->
+    
+    </div>
+  </div>
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--6">
+  
+
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="card">
+        <div class="card-header border-0">
+          <div class="row align-items-center">
+            <div class="col">
+              <h3 class="mb-0"><i class="ni ni-book-bookmark"></i> Notes for {{ current_user.patient.chronic_illness_name }} <small>{{ current_user.patient.chronic_illness_category }}</small></h3>
+            
+            </div>
+
+          </div>
+        </div>
+        
+        <div class="table-responsive text-nowrap table-wrapper-scroll-y my-custom-scrollbar">
+          <!-- Projects table --> 
+          <table class="table table-flush  align-items-center ">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Trainer name</th>
+                <th scope="col">Notes</th>
+                <th scope="col">Notes From</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for note in notes %}
+              <tr>
+                 <th scope="row">{{ note.date }}</th>
+                 <td>{{ note.provider_name }}</td>
+                 <td>{{ note.notes_text[:80]}}......... <a href="" data-toggle="modal" data-target="#modal-readmore"  data-target-notes-text="{{note.notes_text}}">read more</a></td>
+                 <td>{{ note.provider_categroy }}</td>
+              </tr>
+             {% endfor %}
+            
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+<!-- Read More Modal -->
+
+<div class="modal fade" id="modal-readmore" tabindex="-1" role="dialog" aria-labelledby="modal-readmore"
+  aria-hidden="true">
+  <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h6 class="modal-title" id="modal-title-default">{{ current_user.patient.chronic_illness_name }} <small>{{ current_user.patient.chronic_illness_category }}</small></h6>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <p id="data_notes_text"></p>
+      </div>
+
+      <div class="modal-footer">
+
+        <button type="button" class="btn btn-link  ml-auto" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</div>
+{% endblock %}
+
+{% block script %}
+
+
+<script>
+  $(document).ready(function () {
+      $("#modal-readmore").on("show.bs.modal", function (e) {
+          var notes_text = $(e.relatedTarget).data('target-notes-text');
+          $('#data_notes_text').text(notes_text);
+          
+      });
+  });
+</script>
+{% endblock %}
